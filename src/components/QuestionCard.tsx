@@ -1,5 +1,7 @@
 import React from 'react';
 import { AnswerObject } from '../App'
+import { QuestionCardBox, QuestionCardButtons } from '../App.styles';
+import Button from './Button';
 
 type Props = {
     question: string;
@@ -15,24 +17,25 @@ const QuestionCard: React.FC<Props> = ({
     answers,
     callback,
     userAnswer,
-    questionNumber,
-    totalQuestions
 }) => (
-    <div>{console.log(question)}
-        <p className="number">
-            Question: {questionNumber} / {totalQuestions}; 
-        </p>
-        <p dangerouslySetInnerHTML={{ __html: question }}></p>
-        <div>
-            {answers.map(answer => (
-                <div key={answer}>
-                    <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
-                        <span dangerouslySetInnerHTML={{ __html: answer}}></span>
-                    </button>
-                </div>
+    <QuestionCardBox>
+        <p className="question" dangerouslySetInnerHTML={{ __html: question}}></p>
+        <QuestionCardButtons>
+            {answers.map((answer) => (
+                <Button
+                    key={answer}
+                    answer={answer}
+                    disabled={userAnswer ? true : false}
+                    callback={callback}
+                />
             ))}
-        </div>
-    </div>
+        </QuestionCardButtons>
+        {userAnswer?.answer ? 
+            userAnswer?.correctAnswer === userAnswer?.answer ?
+            <p className="feedback" id="feedback-correct">correto</p> : <p className="feedback error" id="feedback-error">Errado</p> 
+            : null
+        }
+    </QuestionCardBox>
 )
 
 export default QuestionCard;

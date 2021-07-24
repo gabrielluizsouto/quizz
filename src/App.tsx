@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import QuestionCard from './components/QuestionCard';
 import { fetchQuizQuestions, Difficulty, QuestionState } from './api';
 import { GlobalStyle } from './App.styles';
+import { GameStatus } from './components/GameStatus';
+import Loading from './components/Loading';
 
 export type AnswerObject = {
   question: string;
@@ -74,14 +76,15 @@ const App = () => {
           { (gameOver || userAnswers.length === TOTAL_QUESTIONS) ? 
             <button className="start" onClick={startTrivia}>Start</button>
           : null}
-          {/* { (gameOver || userAnswers.length === TOTAL_QUESTIONS) && selectedDifficulty ? 
-            ['easy', 'medium', 'hard'].map(difficulty => {
-              return <button className="difficulty" value={difficulty} onClick={() => setSelectedDifficulty(difficulty)}>{difficulty && difficulty.toUpperCase}</button>
-            })
-          : null} */}
-          { !gameOver ? <p className="score">Score: {score}</p> : null }
-          { loading && <p>Loading Questions...</p> }
+          { loading && <Loading/> }
           { !loading && !gameOver &&
+            <GameStatus
+              questionNumber={number+1}
+              totalQuestions={TOTAL_QUESTIONS}
+              score={score}
+            />
+          }
+          { !loading && !gameOver && 
             <QuestionCard
               questionNumber={number+1}
               totalQuestions={TOTAL_QUESTIONS}
