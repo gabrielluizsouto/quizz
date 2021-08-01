@@ -23,12 +23,12 @@ export const GlobalStyle =  createGlobalStyle`
         }
     }
 
-
-    .button-enabled:active {
-        background-color: red;
+    h1 {
+        margin-bottom: 0px;
     }
-    .button-disabled:active {
-        background-color: #595999;
+
+    .button-disabled {
+        opacity: 0.8;
     }
 
     .next {
@@ -61,6 +61,8 @@ export const QuestionCardBox = styled.div`
 
     p {
         text-align: center;
+        margin-top: 2px;
+        margin-bottom: 10px;
     }
     
     .question {

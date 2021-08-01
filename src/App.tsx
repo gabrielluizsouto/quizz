@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import QuestionCard from './components/QuestionCard';
-import { fetchQuizQuestions, Difficulty, QuestionState } from './api';
+import { fetchQuizQuestions, Difficulty, QuestionState } from './resources/api';
 import { GlobalStyle } from './App.styles';
 import { GameStatus } from './components/GameStatus';
 import Loading from './components/Loading';

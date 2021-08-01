@@ -32,7 +32,7 @@ const QuestionCard: React.FC<Props> = ({
         </QuestionCardButtons>
         {userAnswer?.answer ? 
             userAnswer?.correctAnswer === userAnswer?.answer ?
-            <p className="feedback" id="feedback-correct">correto</p> : <p className="feedback error" id="feedback-error">Errado</p> 
+            <p className="feedback" id="feedback-correct">Correto</p> : <p className="feedback error" id="feedback-error">Errado. <br/>Resposta: {userAnswer.correctAnswer}</p> 
             : null
         }
     </QuestionCardBox>
